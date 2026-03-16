@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import { withBase } from "../lib/paths";
+import { getThemeScript } from "../lib/theme";
+import { navigation, siteConfig } from "../site-config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  activePath: string;
+}
+
+const { title, description = siteConfig.description, activePath } = Astro.props;
+const pageTitle = title ? `${title} · ${siteConfig.siteName}` : `${siteConfig.title} · ${siteConfig.siteName}`;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg", baseUrl)} />
+    <link rel="icon" href={withBase("/favicon.ico", baseUrl)} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <script is:inline set:html={getThemeScript()} />
+  </head>
+
+  <body>
+    <div class="shell">
+      <div class="shell__grid">
+        <aside class="sidebar">
+          <div class="sidebar__inner">
+            <nav aria-label="Основная навигация">
+              <ul class="nav-list">
+                {
+                  navigation.map((item) => (
+                    <li>
+                      <a
+                        href={withBase(item.href, baseUrl)}
+                        class:list={["nav-link", activePath === item.href && "nav-link--active"]}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
+            <ThemeToggle />
+          </div>
+        </aside>
+
+        <div class="mobile-bar">
+          <div class="mobile-bar__actions">
+            <nav aria-label="Мобильная навигация">
+              <ul class="mobile-nav">
+                {
+                  navigation.map((item) => (
+                    <li>
+                      <a
+                        href={withBase(item.href, baseUrl)}
+                        class:list={["mobile-nav__link", activePath === item.href && "mobile-nav__link--active"]}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
+            <ThemeToggle compact />
+          </div>
+        </div>
+
+        <main class="content">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
