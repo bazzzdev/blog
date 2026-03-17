@@ -41,17 +41,17 @@ const { Content } = await render(post);
 ---
 
 <SiteLayout title={post.data.title} description={post.data.description} activePath="/">
-  <section class="page-intro">
+  <section class="page-intro content-container">
     <p class="page-intro__label">{formatPostDate(post.data.date)}</p>
   </section>
 
-  <article class="article reveal">
+  <article class="article content-container reveal">
     <div class="article__body">
       <Content />
     </div>
   </article>
 
-  <nav class="article-nav reveal" aria-label="Навигация по публикациям">
+  <nav class="article-nav content-container reveal" aria-label="Навигация по публикациям">
     {
       previousPost ? (
         <a class="article-nav__link article-nav__link--previous" href={withBase(`/posts/${previousPost.slug}/`, import.meta.env.BASE_URL)}>

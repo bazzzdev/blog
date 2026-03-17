@@ -18,13 +18,13 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <SiteLayout title={siteConfig.title} description={siteConfig.description} activePath="/">
-  <section class="page-intro">
+  <section class="page-intro content-container">
     <p class="page-intro__label">Пишу</p>
   </section>
 
   {
     posts.length > 0 ? (
-        <ul class="post-list" aria-label="Список постов">
+        <ul class="post-list content-container" aria-label="Список постов">
           {posts.map((post, index) => (
             <li class="post-list__item reveal" style={`--stagger-index:${index};`}>
               <a class="post-list__link" href={withBase(`/posts/${post.slug}`, baseUrl)}>
@@ -37,7 +37,7 @@ const baseUrl = import.meta.env.BASE_URL;
         ))}
       </ul>
     ) : (
-      <div class="empty-state reveal">
+      <div class="empty-state content-container reveal">
         <p>Пока здесь нет постов. Добавьте `.md` файл в папку `posts/`, и он появится в списке.</p>
       </div>
     )

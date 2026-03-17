@@ -4,28 +4,26 @@ import { siteConfig } from "../site-config";
 ---
 
 <SiteLayout title={siteConfig.aboutTitle} description={siteConfig.description} activePath="/about">
-  <section class="page-intro">
+  <section class="page-intro content-container">
     <p class="page-intro__label">Обо мне</p>
   </section>
 
-  <div class="about-grid reveal">
-    <div class="prose-panel">
-      {siteConfig.aboutBody.map((paragraph) => <p>{paragraph}</p>)}
-    </div>
+  <div class="prose-panel content-container reveal">
+    {siteConfig.aboutBody.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
 
-    <div class="about-links">
-      <p class="about-links__label">Ссылки</p>
-      <ul>
-        {
-          siteConfig.links.map((link) => (
-            <li>
-              <a href={link.href} target="_blank" rel="noreferrer">
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+  <div class="about-links content-container reveal">
+    <p class="about-links__label">Ссылки</p>
+    <ul>
+      {
+        siteConfig.links.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noreferrer">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </SiteLayout>
