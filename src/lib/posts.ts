@@ -29,6 +29,22 @@ export function getPublishedPosts(posts: PostListItem[]) {
   return sortPostsByDateDesc(posts).filter((post) => !post.data.draft);
 }
 
+export function getAdjacentPosts(posts: PostListItem[], slug: string) {
+  const currentIndex = posts.findIndex((post) => post.slug === slug);
+
+  if (currentIndex === -1) {
+    return {
+      previousPost: null,
+      nextPost: null,
+    };
+  }
+
+  return {
+    previousPost: posts[currentIndex + 1] ?? null,
+    nextPost: posts[currentIndex - 1] ?? null,
+  };
+}
+
 export function formatPostDate(date: Date | string) {
   return dateFormatter.format(toDateValue(date));
 }
