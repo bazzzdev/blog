@@ -1,14 +1,16 @@
 ---
-title: Тестовый пост
+title: Релизнул блог
 date: 2026-03-17
-description: Просто тестовый пост
+description: Наверно буду чето писать!
 draft: false
 ---
 
-# Тестовый пост
+# Релизнул блог
 
-Это текст
+Сегодня релизнул свой блог на Astro, планирую ~~регулярно~~ в него что-то писать.
 
-Это ссылка с картинкой
+Писал Codex 5.4, допиливал в Pencil. 
+
+Пока вот вам мопс:
 
 ![Картинка с мопсом](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmd1rk8JVagwnBmpHYmx7qfcWu5RuUuuFkOA&s)
